@@ -4,8 +4,14 @@ package modchart.components.actor.base;
 abstract class ActorImpl implements IActor {
 	public var parent(default, null):IActor;
 
+	public var ID(default, null):Int;
+
 	@:noCompletion
 	private var _children(default, null):Array<IActor>;
+
+	public function new() {
+		ID = @:privateAccess Global._nextActorID++;
+	}
 
 	public function addChild(actor:Null<IActor>):Void {
 		if (!validateChild(actor))
