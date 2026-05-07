@@ -9,10 +9,10 @@ class ValueRegistry {
 
 	static inline function register(name:String):Int {
 		var id = nextId++;
-		nameToId.set(name, id);
+		nameToId.set(name.toLowerCase(), id);
 		return id;
 	}
 
 	static inline function getId(name:String):Int
-		return nameToId.get(name);
+		return nameToId.get(name.toLowerCase());
 }
