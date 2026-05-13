@@ -13,6 +13,12 @@ class ValueRegistry {
 		return id;
 	}
 
+	static inline function registerAlias(alias:String, dest:String):Int {
+		var destID = getId(dest);
+		nameToId.set(alias.toLowerCase(), destID);
+		return destID;
+	}
+
 	static inline function getId(name:String):Int
 		return nameToId.get(name.toLowerCase());
 }

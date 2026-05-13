@@ -8,6 +8,12 @@ typedef Modifier = {
 	fn:ModInputData->Float,
 	entries:Map<ModEntryFlags, String>,
 
+	/**
+	 * Extra field to register aliases.
+	 * This can be done separately with `ValueRegistry`.
+	 */
+	?aliases:Map<String, String>,
+
 	// Entry "hashed" IDs.
 	// Make sure to leave this empty unless you know what are you doing.
 	?entriesID:Array<Int>

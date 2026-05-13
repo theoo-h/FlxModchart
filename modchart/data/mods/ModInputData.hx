@@ -1,5 +1,6 @@
 package modchart.data.mods;
 
+import modchart.data.MusicSync;
 import modchart.data.arrows.*;
 import modchart.data.mods.ModEntryFlags;
 
@@ -13,8 +14,10 @@ typedef ModInputData = {
 	// Relative distance from the arrow to the receptor, in miliseconds.
 	distance:Float,
 
+	musicSync:MusicSync,
+
 	// Arrow data.
-	lane:Int,
+	column:Int,
 	player:Int,
 
 	// The type of this note.

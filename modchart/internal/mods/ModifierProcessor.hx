@@ -2,6 +2,7 @@ package modchart.internal.mods;
 
 import haxe.ds.StringMap;
 import haxe.ds.Vector;
+import modchart.data.MusicSync;
 import modchart.data.arrows.ArrowType;
 import modchart.data.mods.ModInputData;
 import modchart.data.mods.ModSample;
@@ -9,9 +10,10 @@ import modchart.data.mods.ModSample;
 class ModifierProcessor {
 	static var _modInput:ModInputData = {
 		value: 0,
+		musicSync: null,
 		currentFlag: 0,
 		distance: 0,
-		lane: 0,
+		column: 0,
 		player: 0,
 		type: Tap,
 	};
@@ -28,7 +30,7 @@ class ModifierProcessor {
 		entryValues = new Vector(Settings.MAX_MODS * Settings.MAX_PLAYERS * Settings.MAX_COLS, 0.);
 	}
 
-	inline public function getSample(distance:Float, lane:Int, player:Int, type:ArrowType):ModSample {
+	inline public function getSample(musicSync:MusicSync, distance:Float, lane:Int, player:Int, type:ArrowType):ModSample {
 		var modSample:ModSample = {
 			posX: 0,
 			posY: 0,
@@ -69,7 +71,8 @@ class ModifierProcessor {
 					value: value,
 					currentFlag: flags,
 					distance: distance,
-					lane: lane,
+					musicSync: musicSync,
+					column: lane,
 					player: player,
 					type: type,
 				};
@@ -121,6 +124,11 @@ class ModifierProcessor {
 			for (name in modifier.entries)
 				modifier.entriesID.push(ValueRegistry.register(name));
 		}
+
+		// Register modifier aliases (if it does have).
+		if (modifier.aliases != null)
+			for (alias => dest in modifier.aliases)
+				ValueRegistry.registerAlias(alias, dest);
 
 		modLookup.set(modifier.name, modifier);
 		modList.push(modifier);

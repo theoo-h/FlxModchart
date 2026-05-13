@@ -9,12 +9,14 @@
 		{
 			"label": "windows",
 			"args": [
-				"-lib",
-				"flixel",
-				"-lib",
-				"openfl",
-				"-lib",
-				"lime"
+				"-cp", "modchart",
+				"-lib", "flixel",
+				"-lib", "openfl",
+				"-lib", "lime",
+				"-lib", "glm",
+
+				// completion bullshit
+				"--interp"
 			]
 		}
 	]
